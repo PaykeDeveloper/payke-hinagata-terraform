@@ -62,7 +62,7 @@ resource "google_cloud_run_domain_mapping" "main" {
 resource "google_cloud_run_v2_job" "main" {
   for_each = {
     migrate = "migrate"
-    db_seed = "db:seed --force"
+    seed = "db:seed --force"
   }
 
   name         = each.key
