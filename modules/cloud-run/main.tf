@@ -61,8 +61,8 @@ resource "google_cloud_run_domain_mapping" "main" {
 
 resource "google_cloud_run_v2_job" "main" {
   for_each = {
-    migrate = "migrate --force"
-    seed = "db:seed --force"
+    migrate = ["migrate", "--force"]
+    seed    = ["db:seed", "--force"]
   }
 
   name         = each.key
@@ -74,7 +74,7 @@ resource "google_cloud_run_v2_job" "main" {
       service_account = var.service_account_name
       containers {
         image   = local.image
-        command = ["php", "artisan", each.value]
+        command = concat(["php", "artisan"], each.value)
         volume_mounts {
           name       = local.volume_name
           mount_path = "/secrets"
