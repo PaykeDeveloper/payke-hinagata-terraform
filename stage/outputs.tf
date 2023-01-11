@@ -23,6 +23,11 @@ output "cloud_run" {
   description = "Register as GCP_CROUD_RUN in the github actions secret."
 }
 
+output "region" {
+  value       = module.cloud_run.location
+  description = "Register as GCP_REGION in the github actions secret."
+}
+
 output "url" {
   value       = module.cloud_run.url
   description = "You can access the API at this URL."

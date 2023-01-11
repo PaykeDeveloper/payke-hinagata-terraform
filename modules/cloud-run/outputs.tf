@@ -9,3 +9,7 @@ output "image" {
 output "name" {
   value = google_cloud_run_service.main.name
 }
+
+output "location" {
+  value = google_cloud_run_service.main.location
+}
